@@ -1,6 +1,5 @@
 import sayHi from "./say";
 import '../../assets/styles/style.css';
-import json from "../json"
 sayHi()
 
 
