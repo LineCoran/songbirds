@@ -1,0 +1,20 @@
+.description {
+    width: 40%;
+  }
+
+  .description__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .description__picture {
+    width: 150px;
+    height: 120px;
+    background-color: green;
+  }
+
+  .description__inner {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #303030;
+  }

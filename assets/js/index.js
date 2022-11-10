@@ -1,7 +1,12 @@
-import sayHi from "./say";
+
 import '../../assets/styles/style.css';
-sayHi()
 
 
+import '../components/description/description-file.css';
+import createCardDescription from "../components/description/description-card";
 
-console.log('hello my name is Alexey')
+const card = createCardDescription();
+
+document.getElementById('main').append(card);
+
+
