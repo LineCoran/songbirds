@@ -23,11 +23,11 @@
     
     
 
-    descriptionBirdName.innerHTML = 'Галка'; // todo: replace by name from json file
+    descriptionBirdName.innerHTML = 'Галка';
 
     const descriptionBirdCountry = document.createElement('div');
     descriptionBirdCountry.className = 'description__bird-country';
-    descriptionBirdCountry.innerHTML = 'Gomel' // todo: replace by city from json file
+    descriptionBirdCountry.innerHTML = 'Gomel';
     
     const descriptionAudio = document.createElement('audio');
     descriptionAudio.className = 'description__audio';
@@ -36,8 +36,7 @@
 
     const descriptionText = document.createElement('p');
     descriptionText.className = 'description__text';
-    descriptionText.innerHTML = "Слово «галка» произошло из старославянского языка и переводится как «чёрный». Этим словом часто называют воронов или других черных птиц. Латинское название галки «monedula» связывают со словами монета за любовь птицы к блестящим и ярким вещам"; 
-    // todo replace this text fromjson file;
+    descriptionText.innerHTML = "Послушайте плеер <br> Выберите птицу из списка"; 
 
     descriptionPicture.append(descriptionImg);
     descriptionBird.append(descriptionBirdName, descriptionBirdCountry, descriptionAudio);
@@ -45,6 +44,8 @@
     descriptionInner.append(descriptionHeader, descriptionText);
     description.append(descriptionInner);
 
+    descriptionHeader.style.display = "none"
+
     return description;    
 }
-                         
+             
