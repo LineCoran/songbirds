@@ -1,0 +1,26 @@
+.answer {
+    width: 25%;
+  }
+
+  .answer__inner {
+    width: 100%;
+    height: 100%;
+    padding: 10px 40px;
+    border-radius: 15px;
+    background-color: #303030;
+  } 
+
+  .answer__list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .answer__item {
+    cursor: pointer;
+  }
+
+  .answer__item-active {
+    color: red;
+  }
