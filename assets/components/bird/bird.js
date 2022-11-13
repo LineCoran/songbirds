@@ -25,6 +25,7 @@ export default function createBirdStart(answerAudio) {
     birdsInfoAudio.className = 'birds__info__audio';
     birdsInfoAudio.setAttribute('controls', '');
     birdsInfoAudio.setAttribute('src', answerAudio);
+    console.log(answerAudio)
 
     birdsInfo.append(birdsInfoName, birdsInfoAudio);
     birdsPicture.append(birdsImage);

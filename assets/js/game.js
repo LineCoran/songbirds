@@ -2,26 +2,31 @@ import createBirdStart from "../components/bird/bird";
 import createGameQuestion from "../components/game/game";
 import birdsData from "../data/birdsData";
 export default function init() {
+    let nextQuestionButton;
     let globalScore = 0;
     let questionAudio;
     let globalScoreHtmlBlock = document.getElementById('score');
     let stepScore = 5;
     let stepItemList = document.querySelectorAll('.nav__item');
-    let currentStep = setCurrentStepOfGame();
+    let currentStep = 0;
     let correctlyAnswer = setCorrectAnswer(currentStep);
+
     showQuestionBlock(currentStep);
     listenerForAnswerItem();
-    listenerForStepsItem();
+    findNextQuestionButton();
+
+    function findNextQuestionButton() {
+        nextQuestionButton = document.querySelector('.next__question');
+    }
 
     function setCorrectAnswer(step) {
-        let currentStepBirdsArr = birdsData[currentStep];
+        console.log(step);
+        let currentStepBirdsArr = birdsData[step];
         let randomNumber = Math.floor(Math.random()*currentStepBirdsArr.length);
         let randomBird = currentStepBirdsArr[randomNumber].name;
         questionAudio = currentStepBirdsArr[randomNumber].audio;
         return randomBird;
     }
-
-    console.log(questionAudio)
     
     function listenerForAnswerItem() {
         let answerItemList = document.querySelectorAll('.answer__item');
@@ -35,8 +40,6 @@ export default function init() {
         return (result == 0)?true:false;
     }
 
-
-
     function clickOnAnswerButton(event) {
         let clickedBirdName = event.target.innerHTML;
         let clickedBirdButton = event.target;
@@ -46,7 +49,10 @@ export default function init() {
             globalScore+=stepScore;
             globalScoreHtmlBlock.innerHTML = `${globalScore}`;
             showCorrectlyBird(correctlyAnswer, currentStep);
-
+            nextQuestionButton.addEventListener('click', ()=> {
+                currentStep++;
+                changeStepGame();
+            })
         } else {
             clickedBirdButton.classList.add('answer__item-incorrect');
             stepScore--;
@@ -93,27 +99,17 @@ export default function init() {
         mainInner.lastElementChild.remove()
     }
     
-    function setCurrentStepOfGame() {
-        let result;
-        stepItemList.forEach((item, index)=> {
-            if (item.classList.contains("nav__item-active")) {
-                result = index;
-            }
-        })
-        return result;
-    }
-
-    function changeStepGame(event) {
+    function changeStepGame() {
             stepItemList.forEach((navItem)=> {
                 navItem.classList.remove("nav__item-active");
             })
-            event.target.classList.add("nav__item-active");
-            currentStep = setCurrentStepOfGame();
+            stepItemList[currentStep].classList.add("nav__item-active");
+            correctlyAnswer = setCorrectAnswer(currentStep);
             removeBirdBlock()
             removeQuestionBlock();
             showQuestionBlock(currentStep);
+            findNextQuestionButton();
             listenerForAnswerItem();
-            correctlyAnswer = setCorrectAnswer();
             stepScore = 5;
     }
 
@@ -125,7 +121,7 @@ export default function init() {
         let correctBird;
 
         for (let i = 0; i < birdsData[step].length; i++) {
-            if(isCorrectAnswer(birdsData[step][i].name, correctlyAnswer)) {
+            if(isCorrectAnswer(birdsData[step][i].name, answer)) {
                 correctBird = birdsData[step][i];
             }
         }
@@ -135,12 +131,6 @@ export default function init() {
         birdsInfoAudio.src = correctBird.audio;
 
 
-    }
-
-    function listenerForStepsItem() {
-        stepItemList.forEach((item) => {
-            item.addEventListener('click', (event)=> changeStepGame(event) )
-        })
     }
 }
 
