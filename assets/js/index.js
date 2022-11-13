@@ -1,12 +1,16 @@
 
 import '../../assets/styles/style.css';
-
-
 import '../components/description/description-file.css';
-import createCardDescription from "../components/description/description-card";
+import '../components/answer/answer-list.css'
+import init from './game';
 
-const card = createCardDescription();
 
-document.getElementById('main').append(card);
+
+
+
+init()
+
+
+
 
 

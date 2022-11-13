@@ -1,5 +1,5 @@
 
-    export default function createCardDescription() {
+    export default function createCardDescription(bird) {
     const description = document.createElement('section');
     description.className = 'description';
 
@@ -39,7 +39,7 @@
     descriptionText.innerHTML = "Слово «галка» произошло из старославянского языка и переводится как «чёрный». Этим словом часто называют воронов или других черных птиц. Латинское название галки «monedula» связывают со словами монета за любовь птицы к блестящим и ярким вещам"; 
     // todo replace this text fromjson file;
 
-
+    descriptionPicture.append(descriptionImg);
     descriptionBird.append(descriptionBirdName, descriptionBirdCountry, descriptionAudio);
     descriptionHeader.append(descriptionPicture, descriptionBird);
     descriptionInner.append(descriptionHeader, descriptionText);
