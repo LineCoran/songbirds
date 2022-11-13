@@ -21,6 +21,10 @@
     cursor: pointer;
   }
 
-  .answer__item-active {
+  .answer__item-correct {
+    color: green;
+  }
+
+  .answer__item-incorrect {
     color: red;
   }

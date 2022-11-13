@@ -17,5 +17,5 @@ export default function createGameQuestion(step) {
     question.append(createAnswerList(step), createCardDescription());
     game.append(question, nextQuestionButton);
 
-    return game
+    return game;
 }
