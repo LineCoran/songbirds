@@ -21,8 +21,6 @@
     const descriptionBirdName = document.createElement('div');
     descriptionBirdName.className = 'description__bird-name';
     
-    
-
     descriptionBirdName.innerHTML = 'Галка';
 
     const descriptionBirdCountry = document.createElement('div');

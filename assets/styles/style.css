@@ -1,12 +1,8 @@
 :root {
-  --background: #1e262d;
-  --title: #d6d3d3;
-  --text: #f8f0e4;
-  --header: #151a1e;
-  --code: rgba(0, 0, 0, .2); 
-  --item: #32326a;
-  --svg-icon: #f0f8e4;
-  --rs-logo: #f8f0e4;
+  --background: #fafafa;
+  --text: #000;
+  --main: #2C2A2B;
+  --main-text: #fafafa;
 }
 
 * {
@@ -25,13 +21,13 @@ a {
   color: inherit;
 }
   
-  body {
-      min-height: 100vh;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      color: var(--text);
-      background-color: #1d262d;
-  }
+body {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background-color: var(--background);
+}
 
   .container {
     width: 100%;
@@ -39,12 +35,50 @@ a {
     max-width: 1440px;
 }
 
-  .header__inner {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
+.header__inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+.header__widjet {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.header__nav__list {
+  display: flex;
+  margin-right: 150px;
+}
+
+.header__nav__item {
+  margin-right: 35px;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: 0.5s linear;
+}
+
+  .header__nav__item:hover {
+    color: #f29f15;
+  }
+
+  .score {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1;
+    padding: 15px 25px;
+    background-color: #FEBF1D;;
+    background-image: linear-gradient(to bottom,#f3e61f 0%,#f29f15 100%);
+    border-radius: 10px;
   }
 
   .main__inner {
@@ -52,12 +86,22 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: var(--main);
   }
 
   .nav {
-    width: 100%;
-    padding: 20px 0;
-    background-color: var(--header);
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    background-color: var(--main);
+    color: #fafafa;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ffffff33;
+    margin-top: 20px;
+    padding: 25px 15px;
+    border-radius: 20px 20px 20px 20px;
   }
 
   .nav__list {
@@ -69,12 +113,31 @@ a {
 
   .nav__item {
     cursor: pointer;
+    font-size: 12px;
   }
 
   .nav__item-active {
-    color: red;
+
   }
 
-  /* bird card description */
+  .nav__name {
+    position: absolute;
+    display: block;
 
-  
+    font-size:  16px;
+    line-height: 1.6em;
+    font-weight: 700;
+    padding: 0 10px;
+    top: -10px;
+    left: 95px;
+    background-color: var(--main);
+    color: #fff;
+  }
+
+.block {
+    width: 0;
+    height: 0;
+    border-left: 620px solid transparent;
+    border-right: 620px solid transparent;
+    border-bottom: 30px solid #2C2A2B;
+}
