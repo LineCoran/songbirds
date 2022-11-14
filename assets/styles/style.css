@@ -116,10 +116,6 @@ body {
     font-size: 12px;
   }
 
-  .nav__item-active {
-
-  }
-
   .nav__name {
     position: absolute;
     display: block;
