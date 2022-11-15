@@ -1,4 +1,5 @@
 import blankBirdImage from '../../img/blankBird.png';
+import createCardDescription from '../description/description-card';
 
 export default function createBirdStart(answerAudio) {
     const birds = document.createElement('section');
@@ -29,7 +30,7 @@ export default function createBirdStart(answerAudio) {
 
     birdsInfo.append(birdsInfoName, birdsInfoAudio);
     birdsPicture.append(birdsImage);
-    birdsInner.append(birdsPicture, birdsInfo)
+    birdsInner.append(birdsPicture, birdsInfo, createCardDescription())
     birds.append(birdsInner);
 
     return birds;
