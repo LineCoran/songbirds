@@ -1,19 +1,16 @@
 .answer {
-    width: 25%;
+    width: 100%;
   }
 
   .answer__inner {
-    color: #fafafa;
+    color: #000;
     width: 100%;
-    height: 100%;
     padding: 10px 40px;
     border-radius: 15px;
   } 
 
   .answer__list {
-    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
   }
 

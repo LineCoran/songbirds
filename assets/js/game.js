@@ -1,5 +1,6 @@
 import createBirdStart from "../components/bird/bird";
 import createGameQuestion from "../components/game/game";
+import createCardDescription from "../components/description/description-card";
 import birdsData from "../data/birdsData";
 export default function init() {
     let nextQuestionButton;

@@ -1,6 +1,4 @@
 import createAnswerList from "../answer/answer-list";
-import createCardDescription from "../description/description-card";
-
 
 export default function createGameQuestion(step) {
     const game = document.createElement('section');
@@ -14,7 +12,7 @@ export default function createGameQuestion(step) {
     nextQuestionButton.className = 'next__question';
     nextQuestionButton.innerHTML = 'Next question';
 
-    question.append(createAnswerList(step), createCardDescription());
+    question.append(createAnswerList(step));
     game.append(question, nextQuestionButton);
 
     return game;
