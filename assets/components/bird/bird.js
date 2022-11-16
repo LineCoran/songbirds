@@ -1,4 +1,5 @@
 import blankBirdImage from '../../img/blankBird.png';
+import questionImg from '../../svg/question.svg';
 import createCardDescription from '../description/description-card';
 
 export default function createBirdStart(answerAudio) {
@@ -10,7 +11,7 @@ export default function createBirdStart(answerAudio) {
 
     const birdsPicture = document.createElement('div');
     birdsPicture.className = 'birds__picture';
-    birdsPicture.style.backgroundImage= `url(${blankBirdImage})`;
+    birdsPicture.style.backgroundImage= `url(${questionImg})`;
 
     const birdsImage = document.createElement('img');
     birdsImage.className = 'birds__image';
