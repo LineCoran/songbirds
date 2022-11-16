@@ -22,7 +22,7 @@ a {
 }
   
 body {
-    min-height: 100vh;
+    max-width: 100vw;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: var(--text);
@@ -33,6 +33,7 @@ body {
     width: 100%;
     margin: 0 auto;
     max-width: 1440px;
+    overflow-y: hidden;
 }
 
 .header__inner {
@@ -158,7 +159,7 @@ body {
     color: #fff;
   }
 
-.block {
+/* .block {
   margin-bottom: -2px;
     width: 0;
     height: 0;
@@ -174,10 +175,15 @@ body {
   border-left: 620px solid transparent;
   border-right: 620px solid transparent;
   border-top: 30px solid #2C2A2B;
-}
+} */
 
 .blockdow-wrapper {
   
   background-color: #F3F3F3;
 }
+
+
+/* uncorrect answer */
+
+
 

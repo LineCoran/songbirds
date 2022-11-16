@@ -44,6 +44,8 @@ export default function init() {
     function clickOnAnswerButton(event) {
         let clickedBirdName = event.target.innerHTML;
         let clickedBirdButton = event.target;
+        let descriptionLeftBlock = document.querySelector('.description__left');
+        let descriptionCard = document.querySelector('.description');
 
         if (isCorrectAnswer(clickedBirdName, correctlyAnswer)) {
             clickedBirdButton.classList.add('answer__item-correct');
@@ -53,8 +55,20 @@ export default function init() {
             nextQuestionButton.addEventListener('click', ()=> {
                 currentStep++;
                 changeStepGame();
-            })
+            });
+            descriptionLeftBlock.classList.add('correct-card');
+            descriptionCard.classList.add('correct-color');
+            setTimeout(function(){
+                descriptionCard.classList.remove('correct-color');
+            }, 500 )
         } else {
+            descriptionLeftBlock.classList.remove('correct-card');
+            descriptionCard.classList.add('error-shake');
+            descriptionCard.classList.add('error-color');
+            setTimeout(function(){
+                descriptionCard.classList.remove('error-shake');
+                descriptionCard.classList.remove('error-color');
+            }, 500 )
             clickedBirdButton.classList.add('answer__item-incorrect');
             stepScore--;
         }
@@ -69,20 +83,25 @@ export default function init() {
                 currentBird = birdsData[step][i]
             }
         }
-        let birdName = document.querySelector('.description__bird-name');
-        let birdCountry = document.querySelector('.description__bird-country');
+        let birdName = document.querySelector('.description__right__title');
+        let birdCountry = document.querySelector('.description__right__country');
         let birdSound = document.querySelector('.description__audio');
-        let birdText = document.querySelector('.description__text');
-        let descriptionHeader = document.querySelector('.description__header');
-        let descriptionImg = document.querySelector('.description__img');
-        descriptionHeader.style.display = 'flex';
+        let birdText = document.querySelector('.description__right__text');
+        let descriptionLeft = document.querySelector('.description__left');
+        let descriptionImg = document.querySelector('.description__left__img');
+        let cardLevel = document.getElementById("card-level");
+        let cardScore = document.getElementById("card-score");
+        descriptionLeft.style.display = 'flex';
 
         birdName.innerHTML = currentBird.name;
         birdCountry.innerHTML = currentBird.species;
         birdText.innerHTML = currentBird.description;
         birdSound.src = currentBird.audio;
+        cardLevel.innerHTML = currentStep;
+        cardScore.innerHTML = stepScore;
 
-        descriptionImg.setAttribute('src', currentBird.image)
+        descriptionImg.style.backgroundImage = `url('${currentBird.image}')`
+        //setAttribute('src', currentBird.image)
     }
 
     function showQuestionBlock(step) {
