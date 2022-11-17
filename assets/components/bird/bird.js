@@ -1,4 +1,4 @@
-import blankBirdImage from '../../img/blankBird.png';
+
 import questionImg from '../../svg/question.svg';
 import createCardDescription from '../description/description-card';
 
