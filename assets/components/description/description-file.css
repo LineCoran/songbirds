@@ -40,7 +40,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(#dE685E, #EE786E);
+    /* background: linear-gradient(#dE685E, #EE786E); */
+    transition: 0.3s linear;
   }
 
   .description__right {
@@ -72,12 +73,12 @@
   .error-shake {
     animation: shake 0.5s;
   }
-  
+
   .error-color {
     transition: .3s linear;
-     box-shadow: 0 0 16px 8px rgb(255 0 0 / 40%);
-    /* background-color: rgba(216, 68, 68, 0.3); */
+    box-shadow: 0 0 16px 8px rgba(255, 0, 0, 50%);
   }
+
 
   .correct-color {
     transition: .3s linear;
@@ -85,7 +86,42 @@
   }
 
   .correct-card {
-    transition: 0.5s linear;
+    transition: 0.3s linear;
+    background: linear-gradient(#37c550, #3dfb0a57)
+  }
+
+  
+  
+  .error-card5 {
+    transition: .3s linear;
+    background: linear-gradient(#c53737, #fb0a0a84)
+
+  }
+
+  .error-card4 {
+    transition: .3s linear;
+    background: linear-gradient(#c55d37, #fb760a57)
+
+  }
+
+  .error-card3 {
+    transition: .3s linear;
+    background: linear-gradient(#c58a37, #fb930a87)
+
+  }
+
+  .error-card2 {
+    transition: .3s linear;
+    background: linear-gradient(#c59d37, #fbcf0a95)
+  }
+
+  .error-card1 {
+    transition: .3s linear;
+    background: linear-gradient(#b5c537, #bbfb0a8e)
+  }
+
+  .error-card0 {
+    transition: .3s linear;
     background: linear-gradient(#37c550, #3dfb0a57)
   }
   

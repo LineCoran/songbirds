@@ -9,13 +9,17 @@ export default function init() {
     let questionAudio;
     let globalScoreHtmlBlock = document.getElementById('score');
     let stepScore = 5;
-    let stepItemList = document.querySelectorAll('.nav__item');
+    let failCount = 0;
+    let stepEnd = false;
+    //let stepItemList = document.querySelectorAll('.nav__item');
     let currentStep = 0;
     let correctlyAnswer = setCorrectAnswer(currentStep);
 
     showQuestionBlock(currentStep);
     listenerForAnswerItem();
     findNextQuestionButton();
+    showNav();
+    changeStepNavList();
 
 
 
@@ -51,35 +55,47 @@ export default function init() {
         let descriptionCard = document.querySelector('.description');
 
         if (isCorrectAnswer(clickedBirdName, correctlyAnswer)) {
-            clickedBirdButton.classList.add('answer__item-correct');
-            globalScore+=stepScore;
-            globalScoreHtmlBlock.innerHTML = `${globalScore}`;
-            showCorrectlyBird(correctlyAnswer, currentStep);
-            nextQuestionButton.addEventListener('click', ()=> {
-                currentStep++;
-                changeStepGame();
-            });
-            descriptionLeftBlock.classList.add('correct-card');
-            descriptionCard.classList.add('correct-color');
-            setTimeout(function(){
-                descriptionCard.classList.remove('correct-color');
-            }, 500 )
+            if(!stepEnd) {
+                globalScore+=stepScore;
+                clickedBirdButton.classList.add('answer__item-correct');
+                globalScoreHtmlBlock.innerHTML = `${globalScore}`;
+                showCorrectlyBird(correctlyAnswer, currentStep);
+                nextQuestionButton.addEventListener('click', ()=> {
+                    currentStep++;
+                    failCount = 0;
+                    stepEnd = false;
+                    changeStepGame();
+                });
+                descriptionLeftBlock.className = "description__left"
+                descriptionLeftBlock.classList.add(`error-card${failCount}`);
+                descriptionCard.classList.add('correct-color');
+                setTimeout(function(){
+                    descriptionCard.classList.remove('correct-color');
+                }, 500 )
+                stepEnd = true;
+            }
         } else {
-            descriptionLeftBlock.classList.remove('correct-card');
-            descriptionCard.classList.add('error-shake');
-            descriptionCard.classList.add('error-color');
+            if (!stepEnd) {
+                failCount++
+                descriptionLeftBlock.classList.remove('correct-card');
+                descriptionLeftBlock.classList.remove(`error-card${failCount-1}`);
+                descriptionLeftBlock.classList.add(`error-card${failCount}`);
+                descriptionCard.classList.add('error-shake');
+                descriptionCard.classList.add(`error-color`);
             setTimeout(function(){
                 descriptionCard.classList.remove('error-shake');
-                descriptionCard.classList.remove('error-color');
+                descriptionCard.classList.remove(`error-color`);
             }, 500 )
             clickedBirdButton.classList.add('answer__item-incorrect');
             stepScore--;
+            }
         }
         
         changeDescriptionBird(currentStep, event.target.innerHTML);
     }
 
     function changeDescriptionBird(step, bird) {
+        
         let currentBird;
         for (let i = 0; i < birdsData[step].length; i++) {
             if (birdsData[step][i].name == bird){
@@ -91,10 +107,14 @@ export default function init() {
         let birdSound = document.querySelector('.description__audio');
         let birdText = document.querySelector('.description__right__text');
         let descriptionLeft = document.querySelector('.description__left');
+        descriptionLeft.style.transform = 'translateX(-600px)';
         let descriptionImg = document.querySelector('.description__left__img');
         let cardLevel = document.getElementById("card-level");
         let cardScore = document.getElementById("card-score");
-        descriptionLeft.style.display = 'flex';
+        setTimeout(function() {
+            descriptionLeft.style.transform = 'translateX(0)';
+            birdSound.style.transform = 'translateX(0)'
+        }, 150)
 
         birdName.innerHTML = currentBird.name;
         birdCountry.innerHTML = currentBird.species;
@@ -102,14 +122,17 @@ export default function init() {
         birdSound.src = currentBird.audio;
         cardLevel.innerHTML = currentStep;
         cardScore.innerHTML = stepScore;
-
         descriptionImg.style.backgroundImage = `url('${currentBird.image}')`
-        //setAttribute('src', currentBird.image)
     }
 
     function showQuestionBlock(step) {
         const mainInner = document.getElementById('main__inner');
-        mainInner.append(createNav(), createBirdStart(questionAudio), createGameQuestion(step))
+        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step))
+    }
+
+    function showNav() {
+        const mainInner = document.getElementById('main__inner');
+        mainInner.prepend(createNav());
     }
 
     function removeBirdBlock() {
@@ -123,11 +146,9 @@ export default function init() {
     }
     
     function changeStepGame() {
-            stepItemList.forEach((navItem)=> {
-                navItem.classList.remove("nav__item-active");
-            })
-            stepItemList[currentStep].classList.add("nav__item-active");
+            
             correctlyAnswer = setCorrectAnswer(currentStep);
+            changeStepNavList();
             removeBirdBlock()
             removeQuestionBlock();
             showQuestionBlock(currentStep);
@@ -154,6 +175,14 @@ export default function init() {
         birdsInfoAudio.src = correctBird.audio;
 
 
+    }
+
+    function changeStepNavList() {
+        const stepItemList = document.querySelectorAll('.nav__item');
+        stepItemList.forEach((navItem)=> {
+            navItem.classList.remove("nav__item-active");
+        })
+        stepItemList[currentStep].classList.add("nav__item-active");
     }
 }
 
