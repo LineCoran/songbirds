@@ -1,6 +1,7 @@
 import createBirdStart from "../components/bird/bird";
 import createGameQuestion from "../components/game/game";
 import createCardDescription from "../components/description/description-card";
+import createNav from "../components/nav/nav";
 import birdsData from "../data/birdsData";
 export default function init() {
     let nextQuestionButton;
@@ -15,6 +16,8 @@ export default function init() {
     showQuestionBlock(currentStep);
     listenerForAnswerItem();
     findNextQuestionButton();
+
+
 
     function findNextQuestionButton() {
         nextQuestionButton = document.querySelector('.next__question');
@@ -106,7 +109,7 @@ export default function init() {
 
     function showQuestionBlock(step) {
         const mainInner = document.getElementById('main__inner');
-        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step))
+        mainInner.append(createNav(), createBirdStart(questionAudio), createGameQuestion(step))
     }
 
     function removeBirdBlock() {
