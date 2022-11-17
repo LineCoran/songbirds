@@ -1,11 +1,18 @@
+import trainBird from '../svg/bird-train.svg';
+import sparrowBird from '../svg/bird-sparrows.svg';
+import forestBird from '../svg/bird-forest.svg';
+import songBird from '../svg/bird-songbird.svg';
+import preyBird from '../svg/bird-prey.svg';
+import seaBird from '../svg/bird-seabird.svg';
+
 const birdsSvg = 
     {
-        'Train birds': "./assets/svg/bird-train.svg",
-        'Sparrows': "./assets/svg/bird-sparrows.svg",  
-        'Forest birds': "./assets/svg/bird-forest.svg",
-        'Songbirds': "./assets/svg/bird-songbird.svg",  
-        'Prey birds': "./assets/svg/bird-prey.svg",
-        'Seabirds': "./assets/svg/bird-seabird.svg",
+        'Train birds': trainBird,
+        'Sparrows': sparrowBird,  
+        'Forest birds': forestBird,
+        'Songbirds': songBird,  
+        'Prey birds': preyBird,
+        'Seabirds': seaBird,
     }
 
 export default birdsSvg

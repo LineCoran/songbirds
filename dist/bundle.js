@@ -96,7 +96,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ass
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst birdsSvg = \n    {\n        'Train birds': \"./assets/svg/bird-train.svg\",\n        'Sparrows': \"./assets/svg/bird-sparrows.svg\",  \n        'Forest birds': \"./assets/svg/bird-forest.svg\",\n        'Songbirds': \"./assets/svg/bird-songbird.svg\",  \n        'Prey birds': \"./assets/svg/bird-prey.svg\",\n        'Seabirds': \"./assets/svg/bird-seabird.svg\",\n    }\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (birdsSvg);\n\n//# sourceURL=webpack://songbirds/./assets/js/svg.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _svg_bird_train_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../svg/bird-train.svg */ \"./assets/svg/bird-train.svg\");\n/* harmony import */ var _svg_bird_sparrows_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../svg/bird-sparrows.svg */ \"./assets/svg/bird-sparrows.svg\");\n/* harmony import */ var _svg_bird_forest_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../svg/bird-forest.svg */ \"./assets/svg/bird-forest.svg\");\n/* harmony import */ var _svg_bird_songbird_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../svg/bird-songbird.svg */ \"./assets/svg/bird-songbird.svg\");\n/* harmony import */ var _svg_bird_prey_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../svg/bird-prey.svg */ \"./assets/svg/bird-prey.svg\");\n/* harmony import */ var _svg_bird_seabird_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../svg/bird-seabird.svg */ \"./assets/svg/bird-seabird.svg\");\n\n\n\n\n\n\n\nconst birdsSvg = \n    {\n        'Train birds': _svg_bird_train_svg__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n        'Sparrows': _svg_bird_sparrows_svg__WEBPACK_IMPORTED_MODULE_1__[\"default\"],  \n        'Forest birds': _svg_bird_forest_svg__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n        'Songbirds': _svg_bird_songbird_svg__WEBPACK_IMPORTED_MODULE_3__[\"default\"],  \n        'Prey birds': _svg_bird_prey_svg__WEBPACK_IMPORTED_MODULE_4__[\"default\"],\n        'Seabirds': _svg_bird_seabird_svg__WEBPACK_IMPORTED_MODULE_5__[\"default\"],\n    }\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (birdsSvg);\n\n//# sourceURL=webpack://songbirds/./assets/js/svg.js?");
 
 /***/ }),
 
@@ -177,6 +177,66 @@ eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=w
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"9aea8d98e4dfb33a4f8313c443ab458b.png\");\n\n//# sourceURL=webpack://songbirds/./assets/img/blankBird.png?");
+
+/***/ }),
+
+/***/ "./assets/svg/bird-forest.svg":
+/*!************************************!*\
+  !*** ./assets/svg/bird-forest.svg ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"3220276d7f5ad849c3b235eb60ca5b4d.svg\");\n\n//# sourceURL=webpack://songbirds/./assets/svg/bird-forest.svg?");
+
+/***/ }),
+
+/***/ "./assets/svg/bird-prey.svg":
+/*!**********************************!*\
+  !*** ./assets/svg/bird-prey.svg ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"c6944609e6cf16799b1359f347513e58.svg\");\n\n//# sourceURL=webpack://songbirds/./assets/svg/bird-prey.svg?");
+
+/***/ }),
+
+/***/ "./assets/svg/bird-seabird.svg":
+/*!*************************************!*\
+  !*** ./assets/svg/bird-seabird.svg ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"5b0756a49a7fd4cafa5fd7e20ed92f33.svg\");\n\n//# sourceURL=webpack://songbirds/./assets/svg/bird-seabird.svg?");
+
+/***/ }),
+
+/***/ "./assets/svg/bird-songbird.svg":
+/*!**************************************!*\
+  !*** ./assets/svg/bird-songbird.svg ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"9cc01d3fbfc97be64f8761fb509c6a4a.svg\");\n\n//# sourceURL=webpack://songbirds/./assets/svg/bird-songbird.svg?");
+
+/***/ }),
+
+/***/ "./assets/svg/bird-sparrows.svg":
+/*!**************************************!*\
+  !*** ./assets/svg/bird-sparrows.svg ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"a837a5fbe047c19b40b40d9ad36c835e.svg\");\n\n//# sourceURL=webpack://songbirds/./assets/svg/bird-sparrows.svg?");
+
+/***/ }),
+
+/***/ "./assets/svg/bird-train.svg":
+/*!***********************************!*\
+  !*** ./assets/svg/bird-train.svg ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"74eccb68a043f45e40df873a8a2b2580.svg\");\n\n//# sourceURL=webpack://songbirds/./assets/svg/bird-train.svg?");
 
 /***/ }),
 
