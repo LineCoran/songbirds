@@ -1,4 +1,4 @@
-import birdsSvg from "../../js/svg";
+import Svg from "../../js/svg";
 
 export default function createNav() {
     const mainNavWrapper = document.createElement('div');
@@ -10,12 +10,12 @@ export default function createNav() {
     const navList = document.createElement('ul')
     navList.className = 'nav__list';
 
-    for (let key in birdsSvg) {
+    for (let key in Svg[0]) {
         const navItem = document.createElement('li');
         navItem.className = 'nav__item';
         
         const navItemSvg = document.createElement('img');
-        navItemSvg.src = birdsSvg[key];
+        navItemSvg.src = Svg[0][key];
         navItemSvg.className = 'nav__item-svg';
 
         const birdName = key;

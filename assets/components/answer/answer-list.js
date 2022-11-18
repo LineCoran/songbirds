@@ -15,7 +15,11 @@ function createAnswerList(step) {
     for (let i = 0; i < COUNT_ANSWERS; i++) {
         let answerItem = document.createElement('li');
         answerItem.className = "answer__item";
-        answerItem.innerHTML = birdsData[step][i].name;
+
+        let answerItemText = document.createElement('span');
+        answerItemText.className = 'answer__item__text';
+        answerItemText.innerHTML = birdsData[step][i].name;
+        answerItem.append(answerItemText);
         answerList.append(answerItem);
     }
     answerInner.append(answerList);
