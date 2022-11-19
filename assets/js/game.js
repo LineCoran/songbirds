@@ -1,7 +1,10 @@
 import createBirdStart from "../components/bird/bird";
 import createGameQuestion from "../components/game/game";
+import initPlayer from "./player";
+import initPlayer2 from "./player2";
 import createNav from "../components/nav/nav";
 import birdsData from "../data/birdsData";
+import createPlayer from "../components/player/player";
 import Svg from "./svg";
 export default function init() {
     let nextQuestionButton;
@@ -13,6 +16,10 @@ export default function init() {
     let stepEnd = false;
     let currentStep = 0;
     let correctlyAnswer = setCorrectAnswer(currentStep);
+    let descriptionPlayerBlock;
+    let thereIsDescriptionPlayerBlock = false;
+    let thereIsDescriptionPlayer = false;
+    let currentDescriptionBlockName = null;
 
     showQuestionBlock(currentStep);
     listenerForAnswerItem();
@@ -52,8 +59,6 @@ export default function init() {
     }
 
     function clickOnAnswerButton(event) {
-        console.log(event.target)
-        console.log(event.target.innerHTML)
         let clickedBirdName = event.target.innerHTML;
         let clickedBirdButton = event.target;
         let descriptionLeftBlock = document.querySelector('.description__left');
@@ -72,6 +77,7 @@ export default function init() {
                         failCount = 0;
                         stepEnd = false;
                         changeStepGame();
+                        thereIsDescriptionPlayer = false;
                     });
                     nextQuestionButton.classList.add('next__question-active');
                 }
@@ -86,8 +92,7 @@ export default function init() {
                 clickedBirdButton.parentNode.prepend(createIndicator(isCorrect))
             }
         } else {
-            if (!stepEnd) {
-                
+            if (!stepEnd && !isCorrectAnswer(clickedBirdName, currentDescriptionBlockName)) {
                 failCount++
                 descriptionLeftBlock.classList.remove('correct-card');
                 descriptionLeftBlock.classList.remove(`error-card${failCount-1}`);
@@ -103,19 +108,26 @@ export default function init() {
             clickedBirdButton.parentNode.prepend(createIndicator(isCorrect))
             }
         }
-        changeDescriptionBird(currentStep, clickedBirdName);
+        
+       if (!isCorrectAnswer(clickedBirdName, currentDescriptionBlockName)) {
+            changeDescriptionBird(currentStep, clickedBirdName);
+        }
+        currentDescriptionBlockName = clickedBirdName;
+        
     }
 
     function changeDescriptionBird(step, bird) {
+        
         let currentBird;
         for (let i = 0; i < birdsData[step].length; i++) {
             if (birdsData[step][i].name == bird){
                 currentBird = birdsData[step][i]
             }
         }
+        
+        let descriptionRight = document.querySelector('.description__right')
         let birdName = document.querySelector('.description__right__title');
         let birdCountry = document.querySelector('.description__right__country');
-        let birdSound = document.querySelector('.description__audio');
         let birdText = document.querySelector('.description__right__text');
         let descriptionLeft = document.querySelector('.description__left');
         descriptionLeft.style.transform = 'translateX(-600px)';
@@ -124,21 +136,32 @@ export default function init() {
         let cardScore = document.getElementById("card-score");
         setTimeout(function() {
             descriptionLeft.style.transform = 'translateX(0)';
-            birdSound.style.transform = 'translateX(0)'
         }, 150)
-
+        
+        
+        
+        thereIsDescriptionPlayerBlock = true;
         birdName.innerHTML = currentBird.name;
         birdCountry.innerHTML = currentBird.species;
         birdText.innerHTML = currentBird.description;
-        birdSound.src = currentBird.audio;
-        cardLevel.innerHTML = currentStep;
+
+        //birdSound.src = currentBird.audio;
+        if(!thereIsDescriptionPlayer) {
+            console.log('he;;')
+            descriptionPlayerBlock = createPlayer('2');
+            descriptionRight.append(descriptionPlayerBlock);
+            initPlayer2(currentBird.name, step);
+            thereIsDescriptionPlayer = true;
+        }
+        cardLevel.innerHTML = currentStep+1;
         cardScore.innerHTML = stepScore;
         descriptionImg.style.backgroundImage = `url('${currentBird.image}')`
     }
 
     function showQuestionBlock(step) {
         const mainInner = document.getElementById('main__inner');
-        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step))
+        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step));
+        initPlayer(questionAudio, correctlyAnswer);
     }
 
     function showNav() {
@@ -182,7 +205,7 @@ export default function init() {
 
         birdsPicture.style.backgroundImage = `url(${correctBird.image})`;
         birdsInfoName.innerHTML = correctBird.name;
-        birdsInfoAudio.src = correctBird.audio;
+
 
 
     }
@@ -201,5 +224,12 @@ export default function init() {
         indicator.src = Svg[1][result];
         return indicator
     }
+
+    document.querySelector('.player-icon-1').style.background = `url("${Svg[2].play}") center center / cover no-repeat`;
+   
+
+
+
+
 }
 

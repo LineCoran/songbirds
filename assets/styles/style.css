@@ -159,7 +159,7 @@ body {
     color: #fff;
   }
 
-.block {
+/* .block {
   margin-bottom: -2px;
     width: 0;
     height: 0;
@@ -175,7 +175,7 @@ body {
   border-left: 620px solid transparent;
   border-right: 620px solid transparent;
   border-top: 30px solid #2C2A2B;
-}
+} */
 
 .blockdow-wrapper {
   background-color: #F3F3F3;
@@ -194,6 +194,4 @@ body {
 
 
 /* uncorrect answer */
-
-
 

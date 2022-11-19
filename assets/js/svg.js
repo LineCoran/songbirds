@@ -6,6 +6,7 @@ import preyBird from '../svg/bird-prey.svg';
 import seaBird from '../svg/bird-seabird.svg';
 import correctAnswerIndicator from '../svg/green-circle-icon.svg';
 import incorrectAnswerIndicator from '../svg/red-circle-icon.svg';
+import audioPlayIcon from '../svg/play-button-svgrepo-com.svg';
 
 const Svg = 
     [
@@ -20,6 +21,10 @@ const Svg =
         {
         'true': correctAnswerIndicator,
         'false': incorrectAnswerIndicator,
+        },
+        {
+            "play": audioPlayIcon,
+          //  "pause": pause,
         }
 
     ]
