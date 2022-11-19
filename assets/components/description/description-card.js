@@ -1,4 +1,5 @@
-
+    import createPlayer from "../player/player";
+    
     export default function createCardDescription(bird) {
     const description = document.createElement('section');
     description.className = 'description';
@@ -36,18 +37,18 @@
     const descriptionRightCountry = document.createElement('p');
     descriptionRightCountry.className = 'description__right__country';
     
-    const descriptionAudio = document.createElement('audio');
-    descriptionAudio.className = 'description__audio';
-    descriptionAudio.setAttribute('controls', '');
-    descriptionAudio.src = '#';
+    const descriptionAudio = createPlayer('2')
+    // descriptionAudio.className = 'description__audio';
+    // descriptionAudio.setAttribute('controls', '');
+    // descriptionAudio.src = '#';
 
     descriptionLeft.append(descriptionLeftTopText, descriptionLeftImg, descriptionLeftBottomText);
-    descriptionRight.append(descriptionRightTitle, descriptionRightText, descriptionRightCountry, descriptionAudio);
+    descriptionRight.append(descriptionRightTitle, descriptionRightText, descriptionRightCountry);
     description.append(descriptionLeft, descriptionRight)
 
 
     descriptionLeft.style.transform = "translateX(-200px)";
-    descriptionAudio.style.transform = "translateX(400px)";
+   // descriptionAudio.style.transform = "translateX(400px)";
     descriptionAudio.style.transition = "0.4s linear"
 
     return description;    

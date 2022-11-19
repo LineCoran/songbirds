@@ -178,12 +178,20 @@ body {
 } */
 
 .blockdow-wrapper {
-  
   background-color: #F3F3F3;
 }
 
+.answer__item {
+  display: flex;
+  align-items: center;
+}
+.answer__item-indicator {
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+}
+
+
 
 /* uncorrect answer */
-
-
 

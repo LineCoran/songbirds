@@ -1,8 +1,9 @@
 
 import questionImg from '../../svg/question.svg';
 import createCardDescription from '../description/description-card';
+import createPlayer from '../player/player';
 
-export default function createBirdStart(answerAudio) {
+export default function createBirdStart() {
     const birds = document.createElement('section');
     birds.className = 'birds';
 
@@ -23,11 +24,10 @@ export default function createBirdStart(answerAudio) {
     birdsInfoName.className = 'birds__info__name';
     birdsInfoName.innerHTML = '***';
 
-    const birdsInfoAudio = document.createElement('audio');
-    birdsInfoAudio.className = 'birds__info__audio';
-    birdsInfoAudio.setAttribute('controls', '');
-    birdsInfoAudio.setAttribute('src', answerAudio);
-    console.log(answerAudio)
+    const birdsInfoAudio = createPlayer('1')
+   // birdsInfoAudio.className = 'birds__info__audio';
+   // birdsInfoAudio.setAttribute('controls', '');
+   // birdsInfoAudio.setAttribute('src', answerAudio);
 
     birdsInfo.append(birdsInfoName, birdsInfoAudio);
     birdsPicture.append(birdsImage);

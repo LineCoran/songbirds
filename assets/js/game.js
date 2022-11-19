@@ -1,8 +1,11 @@
 import createBirdStart from "../components/bird/bird";
 import createGameQuestion from "../components/game/game";
-import createCardDescription from "../components/description/description-card";
+import initPlayer from "./player";
+import initPlayer2 from "./player2";
 import createNav from "../components/nav/nav";
 import birdsData from "../data/birdsData";
+import createPlayer from "../components/player/player";
+import Svg from "./svg";
 export default function init() {
     let nextQuestionButton;
     let globalScore = 0;
@@ -11,9 +14,12 @@ export default function init() {
     let stepScore = 5;
     let failCount = 0;
     let stepEnd = false;
-    //let stepItemList = document.querySelectorAll('.nav__item');
     let currentStep = 0;
     let correctlyAnswer = setCorrectAnswer(currentStep);
+    let descriptionPlayerBlock;
+    let thereIsDescriptionPlayerBlock = false;
+    let thereIsDescriptionPlayer = false;
+    let currentDescriptionBlockName = null;
 
     showQuestionBlock(currentStep);
     listenerForAnswerItem();
@@ -28,7 +34,6 @@ export default function init() {
     }
 
     function setCorrectAnswer(step) {
-        console.log(step);
         let currentStepBirdsArr = birdsData[step];
         let randomNumber = Math.floor(Math.random()*currentStepBirdsArr.length);
         let randomBird = currentStepBirdsArr[randomNumber].name;
@@ -37,9 +42,14 @@ export default function init() {
     }
     
     function listenerForAnswerItem() {
-        let answerItemList = document.querySelectorAll('.answer__item');
+        let answerItemList = document.querySelectorAll('.answer__item__text');
         answerItemList.forEach((item) => {
-            item.addEventListener('click', (event)=> clickOnAnswerButton(event))
+            item.addEventListener('click', (event)=> {
+                if (event.target == event.currentTarget) {
+                    clickOnAnswerButton(event)
+                }
+                
+            })
         })
     }
 
@@ -53,19 +63,25 @@ export default function init() {
         let clickedBirdButton = event.target;
         let descriptionLeftBlock = document.querySelector('.description__left');
         let descriptionCard = document.querySelector('.description');
+        let isCorrect = isCorrectAnswer(clickedBirdName, correctlyAnswer);
 
-        if (isCorrectAnswer(clickedBirdName, correctlyAnswer)) {
+        if (isCorrect) {
             if(!stepEnd) {
                 globalScore+=stepScore;
-                clickedBirdButton.classList.add('answer__item-correct');
+                clickedBirdButton.parentNode.classList.add('answer__item-correct');
                 globalScoreHtmlBlock.innerHTML = `${globalScore}`;
                 showCorrectlyBird(correctlyAnswer, currentStep);
-                nextQuestionButton.addEventListener('click', ()=> {
-                    currentStep++;
-                    failCount = 0;
-                    stepEnd = false;
-                    changeStepGame();
-                });
+                if (currentStep != 5) {
+                    nextQuestionButton.addEventListener('click', ()=> {
+                        currentStep++;
+                        failCount = 0;
+                        stepEnd = false;
+                        changeStepGame();
+                        thereIsDescriptionPlayer = false;
+                    });
+                    nextQuestionButton.classList.add('next__question-active');
+                }
+                
                 descriptionLeftBlock.className = "description__left"
                 descriptionLeftBlock.classList.add(`error-card${failCount}`);
                 descriptionCard.classList.add('correct-color');
@@ -73,9 +89,10 @@ export default function init() {
                     descriptionCard.classList.remove('correct-color');
                 }, 500 )
                 stepEnd = true;
+                clickedBirdButton.parentNode.prepend(createIndicator(isCorrect))
             }
         } else {
-            if (!stepEnd) {
+            if (!stepEnd && !isCorrectAnswer(clickedBirdName, currentDescriptionBlockName)) {
                 failCount++
                 descriptionLeftBlock.classList.remove('correct-card');
                 descriptionLeftBlock.classList.remove(`error-card${failCount-1}`);
@@ -86,12 +103,17 @@ export default function init() {
                 descriptionCard.classList.remove('error-shake');
                 descriptionCard.classList.remove(`error-color`);
             }, 500 )
-            clickedBirdButton.classList.add('answer__item-incorrect');
+            clickedBirdButton.parentNode.classList.add('answer__item-incorrect');
             stepScore--;
+            clickedBirdButton.parentNode.prepend(createIndicator(isCorrect))
             }
         }
         
-        changeDescriptionBird(currentStep, event.target.innerHTML);
+       if (!isCorrectAnswer(clickedBirdName, currentDescriptionBlockName)) {
+            changeDescriptionBird(currentStep, clickedBirdName);
+        }
+        currentDescriptionBlockName = clickedBirdName;
+        
     }
 
     function changeDescriptionBird(step, bird) {
@@ -102,9 +124,10 @@ export default function init() {
                 currentBird = birdsData[step][i]
             }
         }
+        
+        let descriptionRight = document.querySelector('.description__right')
         let birdName = document.querySelector('.description__right__title');
         let birdCountry = document.querySelector('.description__right__country');
-        let birdSound = document.querySelector('.description__audio');
         let birdText = document.querySelector('.description__right__text');
         let descriptionLeft = document.querySelector('.description__left');
         descriptionLeft.style.transform = 'translateX(-600px)';
@@ -113,21 +136,32 @@ export default function init() {
         let cardScore = document.getElementById("card-score");
         setTimeout(function() {
             descriptionLeft.style.transform = 'translateX(0)';
-            birdSound.style.transform = 'translateX(0)'
         }, 150)
-
+        
+        
+        
+        thereIsDescriptionPlayerBlock = true;
         birdName.innerHTML = currentBird.name;
         birdCountry.innerHTML = currentBird.species;
         birdText.innerHTML = currentBird.description;
-        birdSound.src = currentBird.audio;
-        cardLevel.innerHTML = currentStep;
+
+        //birdSound.src = currentBird.audio;
+        if(!thereIsDescriptionPlayer) {
+            console.log('he;;')
+            descriptionPlayerBlock = createPlayer('2');
+            descriptionRight.append(descriptionPlayerBlock);
+            initPlayer2(currentBird.name, step);
+            thereIsDescriptionPlayer = true;
+        }
+        cardLevel.innerHTML = currentStep+1;
         cardScore.innerHTML = stepScore;
         descriptionImg.style.backgroundImage = `url('${currentBird.image}')`
     }
 
     function showQuestionBlock(step) {
         const mainInner = document.getElementById('main__inner');
-        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step))
+        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step));
+        initPlayer(questionAudio, correctlyAnswer);
     }
 
     function showNav() {
@@ -146,7 +180,6 @@ export default function init() {
     }
     
     function changeStepGame() {
-            
             correctlyAnswer = setCorrectAnswer(currentStep);
             changeStepNavList();
             removeBirdBlock()
@@ -172,7 +205,7 @@ export default function init() {
 
         birdsPicture.style.backgroundImage = `url(${correctBird.image})`;
         birdsInfoName.innerHTML = correctBird.name;
-        birdsInfoAudio.src = correctBird.audio;
+
 
 
     }
@@ -184,5 +217,19 @@ export default function init() {
         })
         stepItemList[currentStep].classList.add("nav__item-active");
     }
+
+    function createIndicator(result) {
+        const indicator = document.createElement('img');
+        indicator.className = 'answer__item-indicator';
+        indicator.src = Svg[1][result];
+        return indicator
+    }
+
+    document.querySelector('.player-icon-1').style.background = `url("${Svg[2].play}") center center / cover no-repeat`;
+   
+
+
+
+
 }
 

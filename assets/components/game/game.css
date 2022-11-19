@@ -11,3 +11,11 @@
     padding: 10px 20px;
     justify-content: space-between;
   }
+  .next__question {
+    opacity: 0.5;
+    transition: 0.3s ease-in;
+  }
+
+  .next__question-active {
+    opacity: 1;
+  }
