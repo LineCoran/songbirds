@@ -5,10 +5,10 @@ import '../components/answer/answer-list.css';
 import '../components/game/game.css';
 import '../components/bird/bird.css';
 import '../components/player/player.css';
+import '../components/welcome/welcome.css';
+import startPageShow from './startPageShow'
 
-import init from './game';
-
-init()
+startPageShow();
 
 
 

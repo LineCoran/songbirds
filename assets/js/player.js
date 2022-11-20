@@ -15,14 +15,12 @@ export default function initPlayer(audioSource, correctBird) {
     audio.src = audioSource;
     
     audio.currentTime = 0;
-    setDurationTime(audio.duration);
 
     setTimeout( function(){
         setDurationTime(audio.duration);
     },
     500
     )
-
 
     audioPlayButton.addEventListener('click', playAudio )
 
@@ -108,6 +106,5 @@ export default function initPlayer(audioSource, correctBird) {
     audioVolume.addEventListener('input', setValue);
     nextButton.addEventListener('click', stopAudio);
     setValue();
-
 }
 

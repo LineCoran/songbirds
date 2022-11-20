@@ -5,29 +5,41 @@ import initPlayer2 from "./player2";
 import createNav from "../components/nav/nav";
 import birdsData from "../data/birdsData";
 import createPlayer from "../components/player/player";
+import createResultsBlock from "../components/result/result";
 import Svg from "./svg";
 export default function init() {
     let nextQuestionButton;
-    let globalScore = 0;
+    let globalScore;
     let questionAudio;
-    let globalScoreHtmlBlock = document.getElementById('score');
-    let stepScore = 5;
-    let failCount = 0;
-    let stepEnd = false;
-    let currentStep = 0;
-    let correctlyAnswer = setCorrectAnswer(currentStep);
+    let globalScoreHtmlBlock;
+    let stepScore;
+    let failCount;
+    let stepEnd;
+    let currentStep;
+    let correctlyAnswer;
     let descriptionPlayerBlock;
-    let thereIsDescriptionPlayerBlock = false;
-    let thereIsDescriptionPlayer = false;
-    let currentDescriptionBlockName = null;
+    let thereIsDescriptionPlayerBlock;
+    let thereIsDescriptionPlayer;
+    let currentDescriptionBlockName;
 
-    showQuestionBlock(currentStep);
-    listenerForAnswerItem();
-    findNextQuestionButton();
-    showNav();
-    changeStepNavList();
-
-
+    function startGame() {
+        globalScoreHtmlBlock = document.getElementById('score');
+        globalScore = 0;
+        globalScoreHtmlBlock.innerHTML = `${globalScore}`;
+        stepScore = 5;
+        failCount = 0;
+        stepEnd = false;
+        currentStep = 0;
+        correctlyAnswer = setCorrectAnswer(currentStep);
+        thereIsDescriptionPlayer = false;
+        thereIsDescriptionPlayerBlock = false;
+        currentDescriptionBlockName = null
+        showQuestionBlock(currentStep);
+        listenerForAnswerItem();
+        findNextQuestionButton();
+        showNav();
+        changeStepNavList();
+    }
 
     function findNextQuestionButton() {
         nextQuestionButton = document.querySelector('.next__question');
@@ -80,6 +92,8 @@ export default function init() {
                         thereIsDescriptionPlayer = false;
                     });
                     nextQuestionButton.classList.add('next__question-active');
+                } else {
+                    setTimeout(showResults, 700)
                 }
                 
                 descriptionLeftBlock.className = "description__left"
@@ -145,9 +159,7 @@ export default function init() {
         birdCountry.innerHTML = currentBird.species;
         birdText.innerHTML = currentBird.description;
 
-        //birdSound.src = currentBird.audio;
         if(!thereIsDescriptionPlayer) {
-            console.log('he;;')
             descriptionPlayerBlock = createPlayer('2');
             descriptionRight.append(descriptionPlayerBlock);
             initPlayer2(currentBird.name, step);
@@ -162,6 +174,7 @@ export default function init() {
         const mainInner = document.getElementById('main__inner');
         mainInner.append(createBirdStart(questionAudio), createGameQuestion(step));
         initPlayer(questionAudio, correctlyAnswer);
+        console.log('Правильный ответ: '+correctlyAnswer);
     }
 
     function showNav() {
@@ -177,6 +190,11 @@ export default function init() {
     function removeQuestionBlock() {
         const mainInner = document.getElementById('main__inner');
         mainInner.lastElementChild.remove()
+    }
+
+    function removeResultsBlock() {
+        const resultsBlock = document.getElementById('results-block');
+        resultsBlock.remove()
     }
     
     function changeStepGame() {
@@ -194,7 +212,6 @@ export default function init() {
 
         let birdsPicture = document.querySelector('.birds__picture');
         let birdsInfoName = document.querySelector('.birds__info__name');
-        let birdsInfoAudio = document.querySelector('.birds__info__audio');
         let correctBird;
 
         for (let i = 0; i < birdsData[step].length; i++) {
@@ -205,9 +222,6 @@ export default function init() {
 
         birdsPicture.style.backgroundImage = `url(${correctBird.image})`;
         birdsInfoName.innerHTML = correctBird.name;
-
-
-
     }
 
     function changeStepNavList() {
@@ -225,11 +239,27 @@ export default function init() {
         return indicator
     }
 
+    function showResults() {
+        const mainInner = document.getElementById('main__inner');
+
+        while(mainInner.firstChild) {
+            mainInner.firstChild.remove()
+        }
+        mainInner.append(createResultsBlock(globalScore));
+        playAgain()
+    }
+
+    function playAgain() {
+        const playAgainButton = document.querySelector('.play__again__button');
+
+        playAgainButton.addEventListener('click', function() {
+            removeResultsBlock()
+            startGame();
+        });
+    }
+
+    startGame()
+
     document.querySelector('.player-icon-1').style.background = `url("${Svg[2].play}") center center / cover no-repeat`;
-   
-
-
-
-
 }
 

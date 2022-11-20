@@ -195,3 +195,17 @@ body {
 
 /* uncorrect answer */
 
+.results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    width: 70%;
+    height: 50vh;
+    
+    box-shadow: 0 8px 16px -8px rgb(0 0 0 / 40%);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: 0.3s linear;
+}
