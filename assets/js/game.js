@@ -4,8 +4,13 @@ import initPlayer from "./player";
 import initPlayer2 from "./player2";
 import createNav from "../components/nav/nav";
 import birdsData from "../data/birdsData";
+import birdsDataEn from "../data/birdsDataEn";
 import createPlayer from "../components/player/player";
 import createResultsBlock from "../components/result/result";
+import createHeaderBlock from "../components/header/header";
+import { listenerForHeaderButtons } from "./startPageShow";
+import { addListenerForLanguageButtons } from "./languageButtons";
+import setActiveEnglish from "./languageButtons";
 import Svg from "./svg";
 export default function init() {
     let nextQuestionButton;
@@ -21,19 +26,29 @@ export default function init() {
     let thereIsDescriptionPlayerBlock;
     let thereIsDescriptionPlayer;
     let currentDescriptionBlockName;
+    let language;
+    let birdsDataAll = {
+        ru: birdsData,
+        en: birdsDataEn,
+    }
 
     function startGame() {
+        language = localStorage.getItem('lang');
+        showHeaderBlock()
+        listenerForHeaderButtons();
+        addListenerForLanguageButtons();
+        setActiveEnglish();
         globalScoreHtmlBlock = document.getElementById('score');
         globalScore = 0;
         globalScoreHtmlBlock.innerHTML = `${globalScore}`;
         stepScore = 5;
         failCount = 0;
         stepEnd = false;
-        currentStep = 0;
+        currentStep = 4;
         correctlyAnswer = setCorrectAnswer(currentStep);
         thereIsDescriptionPlayer = false;
         thereIsDescriptionPlayerBlock = false;
-        currentDescriptionBlockName = null
+        currentDescriptionBlockName = null;
         showQuestionBlock(currentStep);
         listenerForAnswerItem();
         findNextQuestionButton();
@@ -41,12 +56,19 @@ export default function init() {
         changeStepNavList();
     }
 
+    function showQuestionBlock(step) {
+        const mainInner = document.getElementById('main__inner');
+        mainInner.append(createBirdStart(language), createGameQuestion(step, language));
+        initPlayer(questionAudio, correctlyAnswer);
+        console.log('Правильный ответ: '+correctlyAnswer);
+    }
+
     function findNextQuestionButton() {
         nextQuestionButton = document.querySelector('.next__question');
     }
 
     function setCorrectAnswer(step) {
-        let currentStepBirdsArr = birdsData[step];
+        let currentStepBirdsArr = birdsDataAll[language][step];
         let randomNumber = Math.floor(Math.random()*currentStepBirdsArr.length);
         let randomBird = currentStepBirdsArr[randomNumber].name;
         questionAudio = currentStepBirdsArr[randomNumber].audio;
@@ -133,11 +155,12 @@ export default function init() {
     function changeDescriptionBird(step, bird) {
         
         let currentBird;
-        for (let i = 0; i < birdsData[step].length; i++) {
-            if (birdsData[step][i].name == bird){
-                currentBird = birdsData[step][i]
+        for (let i = 0; i < birdsDataAll[language][step].length; i++) {
+            if (birdsDataAll[language][step][i].name == bird){
+                currentBird = birdsDataAll[language][step][i]
             }
         }
+       
         
         let descriptionRight = document.querySelector('.description__right')
         let birdName = document.querySelector('.description__right__title');
@@ -153,7 +176,6 @@ export default function init() {
         }, 150)
         
         
-        
         thereIsDescriptionPlayerBlock = true;
         birdName.innerHTML = currentBird.name;
         birdCountry.innerHTML = currentBird.species;
@@ -162,7 +184,7 @@ export default function init() {
         if(!thereIsDescriptionPlayer) {
             descriptionPlayerBlock = createPlayer('2');
             descriptionRight.append(descriptionPlayerBlock);
-            initPlayer2(currentBird.name, step);
+            initPlayer2(currentBird.name, step, language);
             thereIsDescriptionPlayer = true;
         }
         cardLevel.innerHTML = currentStep+1;
@@ -170,16 +192,9 @@ export default function init() {
         descriptionImg.style.backgroundImage = `url('${currentBird.image}')`
     }
 
-    function showQuestionBlock(step) {
-        const mainInner = document.getElementById('main__inner');
-        mainInner.append(createBirdStart(questionAudio), createGameQuestion(step));
-        initPlayer(questionAudio, correctlyAnswer);
-        console.log('Правильный ответ: '+correctlyAnswer);
-    }
-
     function showNav() {
         const mainInner = document.getElementById('main__inner');
-        mainInner.prepend(createNav());
+        mainInner.prepend(createNav(language));
     }
 
     function removeBirdBlock() {
@@ -214,9 +229,9 @@ export default function init() {
         let birdsInfoName = document.querySelector('.birds__info__name');
         let correctBird;
 
-        for (let i = 0; i < birdsData[step].length; i++) {
-            if(isCorrectAnswer(birdsData[step][i].name, answer)) {
-                correctBird = birdsData[step][i];
+        for (let i = 0; i < birdsDataAll[language][step].length; i++) {
+            if(isCorrectAnswer(birdsDataAll[language][step][i].name, answer)) {
+                correctBird = birdsDataAll[language][step][i];
             }
         }
 
@@ -251,11 +266,20 @@ export default function init() {
 
     function playAgain() {
         const playAgainButton = document.querySelector('.play__again__button');
+        
 
         playAgainButton.addEventListener('click', function() {
-            removeResultsBlock()
+            removeResultsBlock();
+            const header = document.querySelector('.header');
+            header.remove();
             startGame();
         });
+    }
+
+    function showHeaderBlock() {
+        const wrapper = document.getElementById('wrapper');
+        const headerBlock = createHeaderBlock(language);
+        wrapper.prepend(headerBlock);
     }
 
     startGame()

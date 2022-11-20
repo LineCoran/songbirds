@@ -1,6 +1,10 @@
 import createAnswerList from "../answer/answer-list";
 
-export default function createGameQuestion(step) {
+export default function createGameQuestion(step, lang) {
+    const WORDS = {
+        en: "Next question",
+        ru: "Следующий вопрос"
+    }
     const game = document.createElement('section');
     game.className = 'game';
     game.id = 'game';
@@ -10,9 +14,9 @@ export default function createGameQuestion(step) {
 
     const nextQuestionButton = document.createElement('button');
     nextQuestionButton.className = 'next__question';
-    nextQuestionButton.innerHTML = 'Next question';
+    nextQuestionButton.innerHTML = WORDS[lang];
 
-    question.append(createAnswerList(step));
+    question.append(createAnswerList(step, lang));
     game.append(question, nextQuestionButton);
 
     return game;

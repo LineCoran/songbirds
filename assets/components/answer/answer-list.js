@@ -1,7 +1,13 @@
 const COUNT_ANSWERS = 6;
 import birdsData from "../../data/birdsData";
+import birdsDataEn from "../../data/birdsDataEn";
 
-function createAnswerList(step) {
+function createAnswerList(step, lang) {
+
+    const birdsDataAll = {
+        en: birdsDataEn,
+        ru: birdsData
+    }
 
     const answer = document.createElement('section');
     answer.className = "answer";
@@ -18,7 +24,7 @@ function createAnswerList(step) {
 
         let answerItemText = document.createElement('span');
         answerItemText.className = 'answer__item__text';
-        answerItemText.innerHTML = birdsData[step][i].name;
+        answerItemText.innerHTML = birdsDataAll[lang][step][i].name;
         answerItem.append(answerItemText);
         answerList.append(answerItem);
     }

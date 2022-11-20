@@ -1,6 +1,21 @@
     import createPlayer from "../player/player";
     
-    export default function createCardDescription(bird) {
+    export default function createCardDescription(lang) {
+
+    const WORDS = {
+        level: {
+            en: "level",
+            ru: "уровень"
+        },
+        score : {
+            en: "score",
+            ru: "баллы",
+        },
+        description: {
+            en: "Listen the player and choose the bird",
+            ru: "Прослушайте аудио и выберите птицу",
+        }
+    }
     const description = document.createElement('section');
     description.className = 'description';
 
@@ -14,13 +29,13 @@
     const descriptionLeftTopText = document.createElement('h4');
     descriptionLeftTopText.className = 'description__left__text';
     descriptionLeftTopText.id = 'description-level';
-    descriptionLeftTopText.innerHTML = 'level <span id="card-level">123<span>'
+    descriptionLeftTopText.innerHTML = `${WORDS.level[lang]} <span id="card-level">123<span>`
     // to do add level
 
     const descriptionLeftBottomText = document.createElement('h4');
     descriptionLeftBottomText.className = 'description__left__text';
     descriptionLeftBottomText.id = 'description-score';
-    descriptionLeftBottomText.innerHTML = 'score <span id="card-score">123<span>';
+    descriptionLeftBottomText.innerHTML = `${WORDS.score[lang]} <span id="card-score">123<span>`;
     // to do add score
     
     const descriptionLeftImg = document.createElement('div');
@@ -32,7 +47,7 @@
 
     const descriptionRightText = document.createElement('p');
     descriptionRightText.className = 'description__right__text';
-    descriptionRightText.innerHTML = 'Listen the player and choose the bird'
+    descriptionRightText.innerHTML = WORDS.description[lang];
 
     const descriptionRightCountry = document.createElement('p');
     descriptionRightCountry.className = 'description__right__country';

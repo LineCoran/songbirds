@@ -3,7 +3,7 @@ import questionImg from '../../svg/question.svg';
 import createCardDescription from '../description/description-card';
 import createPlayer from '../player/player';
 
-export default function createBirdStart() {
+export default function createBirdStart(lang) {
     const birds = document.createElement('section');
     birds.className = 'birds';
 
@@ -31,7 +31,7 @@ export default function createBirdStart() {
 
     birdsInfo.append(birdsInfoName, birdsInfoAudio);
     birdsPicture.append(birdsImage);
-    birdsInner.append(birdsPicture, birdsInfo, createCardDescription())
+    birdsInner.append(birdsPicture, birdsInfo, createCardDescription(lang))
     birds.append(birdsInner);
 
     return birds;

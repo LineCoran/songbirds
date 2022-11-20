@@ -1,6 +1,11 @@
 import birdsData from "../data/birdsData";
+import birdsDataEn from "../data/birdsDataEn";
 
-export default function initPlayer2(birdName, step) {
+export default function initPlayer2(birdName, step, lang) {
+    const birdsDataAll = {
+        en: birdsDataEn,
+        ru: birdsData
+    }
     const audioPlayButton = document.getElementById('play-2');
     const audioDurationTime = document.getElementById('duration-time-2');
     const audioExactTime = document.getElementById('exact-time-2');
@@ -24,7 +29,6 @@ export default function initPlayer2(birdName, step) {
     )
 
     function playAudio() {
-        console.log('hello')
         if (!isPlay) {
             audio2.currentTime = currentTimeGlobal;
             audio2.play()
@@ -75,7 +79,6 @@ export default function initPlayer2(birdName, step) {
     }
 
     function stopAudioNextQuestion() {
-        console.log(!!nextButton.classList.contains("next__question-active"))
         if(nextButton.classList.contains("next__question-active"))
          {
             audio2.pause()
@@ -89,9 +92,9 @@ export default function initPlayer2(birdName, step) {
 
     function findAudioSourceByName(name) {
         let currentBird;
-        for (let i = 0; i < birdsData[step].length; i++) {
-            if (birdsData[step][i].name == name){
-                currentBird = birdsData[step][i]
+        for (let i = 0; i < birdsDataAll[lang][step].length; i++) {
+            if (birdsDataAll[lang][step][i].name == name){
+                currentBird = birdsDataAll[lang][step][i]
             }
         }
         return currentBird.audio;
