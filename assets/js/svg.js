@@ -24,7 +24,7 @@ const Svg =
         },
         {
             "play": audioPlayIcon,
-          //  "pause": pause,
+          // todo  "pause": pause,
         }
 
     ]

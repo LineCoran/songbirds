@@ -17,10 +17,6 @@ export default function initPlayer2(birdName, step) {
     audio2.src = audioLink;
     audio2.currentTime = 0;
 
-    // async function setAudioSourse() {
-    //     const res =
-    // }
-
     setTimeout( function(){
         setDurationTime(audio2.duration);
     },
