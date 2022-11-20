@@ -9,25 +9,23 @@ export default function initPlayer2(birdName, step) {
     const answers = document.querySelectorAll('.answer__item__text');
     const nextButton = document.querySelector('.next__question');
     let globalBirdName = birdName;
-
-    
     let audioLink = findAudioSourceByName(globalBirdName);
-    console.log(audioLink)
-
     let currentTimeGlobal = 0;
     let audio2 = new Audio();
     let isPlay = false;
+
     audio2.src = audioLink;
     audio2.currentTime = 0;
+
+    // async function setAudioSourse() {
+    //     const res =
+    // }
 
     setTimeout( function(){
         setDurationTime(audio2.duration);
     },
     500
     )
-
-
-    audioPlayButton.addEventListener('click', playAudio )
 
     function playAudio() {
         console.log('hello')
@@ -88,19 +86,20 @@ export default function initPlayer2(birdName, step) {
          }
     }
 
-    function stopAudio() {
-        audio2.pause();
-    }
-
     function isSameBird(clicked, current) {
         let result = clicked.localeCompare(current);
         return (result == 0)?true:false;
     }
 
-    audio2.addEventListener('timeupdate', updateProgress);
-    audioProgress.addEventListener('change', setProgress);
-    audioVolume.addEventListener('input', setValue);
-    setValue();
+    function findAudioSourceByName(name) {
+        let currentBird;
+        for (let i = 0; i < birdsData[step].length; i++) {
+            if (birdsData[step][i].name == name){
+                currentBird = birdsData[step][i]
+            }
+        }
+        return currentBird.audio;
+    }
 
     answers.forEach((answer) => {
         answer.addEventListener('click', (event)=> {
@@ -128,16 +127,12 @@ export default function initPlayer2(birdName, step) {
         });
     });
 
-    nextButton.addEventListener('click', stopAudioNextQuestion);
 
-    function findAudioSourceByName(name) {
-        let currentBird;
-        for (let i = 0; i < birdsData[step].length; i++) {
-            if (birdsData[step][i].name == name){
-                currentBird = birdsData[step][i]
-            }
-        }
-        return currentBird.audio;
-    }
+    audio2.addEventListener('timeupdate', updateProgress);
+    audioProgress.addEventListener('change', setProgress);
+    audioVolume.addEventListener('input', setValue);
+    nextButton.addEventListener('click', stopAudioNextQuestion);
+    audioPlayButton.addEventListener('click', playAudio);
+    setValue();
 }
 
