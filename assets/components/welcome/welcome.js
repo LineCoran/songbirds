@@ -1,7 +1,6 @@
-export default function createWelcomeBlock() {
+export default function createWelcomeBlock(language) {
     const countLayer = 20;
-    const language = 'en';
-    const text = {
+    const WORDS = {
         en: "Play",
         ru: "Играть",
     }
@@ -21,34 +20,9 @@ export default function createWelcomeBlock() {
 
     const welcomeButton = document.createElement('button');
     welcomeButton.className = 'welcome__button next__question next__question-active';
-    welcomeButton.innerHTML = text[language];
+    welcomeButton.innerHTML = WORDS[language];
 
     welcome.append(stage, welcomeButton);
 
     return welcome
 }
-/* <section class="welcome">
-            <div class="stage">
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>                        
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-            <div class="layer"></div>
-        </div>
-    <button class="welcome__button next__question next__question-active">Play</button>
-</section>  */

@@ -1,6 +1,4 @@
-export default function createHeaderBlock() {
-    const language = "en";
-
+export default function createHeaderBlock(language) {
     const headerNavText = [
         {
             en: "Main",
@@ -53,6 +51,19 @@ export default function createHeaderBlock() {
         headerNavList.append(headerNavItem);
     }
 
+    const languageBlock = document.createElement('div');
+    languageBlock.className = 'language';
+
+    const languageButtonEn = document.createElement('p');
+    languageButtonEn.className = 'language__button language__button-en';
+    languageButtonEn.id = 'en';
+    languageButtonEn.innerHTML = 'En'
+
+    const languageButtonRu = document.createElement('p');
+    languageButtonRu.className = 'language__button';
+    languageButtonRu.id = 'ru';
+    languageButtonRu.innerHTML = 'Ru'
+
     const score = document.createElement('div');
     score.className = 'score';
     score.innerHTML = scoreText[language];
@@ -62,8 +73,9 @@ export default function createHeaderBlock() {
 
     score.append(scoreNumber);
     headerLogoWrapper.append(headerLogo)
+    languageBlock.append(languageButtonEn, languageButtonRu);
 
-    headerWidjet.append(headerNavList, score);
+    headerWidjet.append(headerNavList, languageBlock, score);
     headerInner.append(headerLogoWrapper, headerWidjet);
     header.append(headerInner);
 

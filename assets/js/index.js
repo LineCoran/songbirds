@@ -6,9 +6,13 @@ import '../components/game/game.css';
 import '../components/bird/bird.css';
 import '../components/player/player.css';
 import '../components/welcome/welcome.css';
-import startPageShow from './startPageShow'
+import startPageShow from './startPageShow';
+import setLanguage from './language';
+import setActiveEnglish from './languageButtons'
 
+setLanguage();
 startPageShow();
+setActiveEnglish();
 
 
 

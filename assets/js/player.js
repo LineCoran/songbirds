@@ -75,7 +75,6 @@ export default function initPlayer(audioSource, correctBird) {
     }
 
     function stopAudio() {
-        console.log(!!nextButton.classList.contains("next__question-active"))
         if(nextButton.classList.contains("next__question-active"))
          {
             audio.pause()
