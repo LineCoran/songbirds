@@ -34,26 +34,28 @@ export default function init() {
 
     function startGame() {
         language = localStorage.getItem('lang');
-        showHeaderBlock()
-        listenerForHeaderButtons();
-        addListenerForLanguageButtons();
-        setActiveEnglish();
-        globalScoreHtmlBlock = document.getElementById('score');
         globalScore = 0;
-        globalScoreHtmlBlock.innerHTML = `${globalScore}`;
+        
         stepScore = 5;
         failCount = 0;
         stepEnd = false;
-        currentStep = 4;
+        currentStep = 0;
         correctlyAnswer = setCorrectAnswer(currentStep);
         thereIsDescriptionPlayer = false;
         thereIsDescriptionPlayerBlock = false;
         currentDescriptionBlockName = null;
+        showHeaderBlock()
+        listenerForHeaderButtons();
+        addListenerForLanguageButtons();
+        setActiveEnglish();
         showQuestionBlock(currentStep);
         listenerForAnswerItem();
         findNextQuestionButton();
         showNav();
         changeStepNavList();
+
+        globalScoreHtmlBlock = document.getElementById('score');
+        globalScoreHtmlBlock.innerHTML = `${globalScore}`;
     }
 
     function showQuestionBlock(step) {

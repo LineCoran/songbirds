@@ -1,3 +1,8 @@
+
+let audio;
+let isPlay;
+let currentTimeGlobal;
+
 export default function initPlayer(audioSource, correctBird) {
     const audioPlayButton = document.getElementById('play-1');
     const audioDurationTime = document.getElementById('duration-time-1');
@@ -7,9 +12,9 @@ export default function initPlayer(audioSource, correctBird) {
     const nextButton = document.querySelector('.next__question');
     const answers = document.querySelectorAll('.answer__item__text');
     let answerBird = correctBird;
-    let currentTimeGlobal = 0;
-    let audio = new Audio();
-    let isPlay = false;
+    currentTimeGlobal = 0;
+    audio = new Audio();
+    isPlay = false;
     let audioTime = 0;
 
     audio.src = audioSource;
@@ -74,12 +79,14 @@ export default function initPlayer(audioSource, correctBird) {
         audio.volume = audioVolume.value/100;
     }
 
-    function stopAudio() {
+    function stopAudioByNextStep() {
         if(nextButton.classList.contains("next__question-active"))
          {
             audio.pause()
          }
     }
+
+    
 
     function isSameBird(clicked, current) {
         let result = clicked.localeCompare(current);
@@ -103,7 +110,17 @@ export default function initPlayer(audioSource, correctBird) {
     audio.addEventListener('timeupdate', updateProgress);
     audioProgress.addEventListener('change', setProgress);
     audioVolume.addEventListener('input', setValue);
-    nextButton.addEventListener('click', stopAudio);
+    nextButton.addEventListener('click', stopAudioByNextStep);
     setValue();
+}
+
+export function stopAudio() {
+    if (!isPlay) {
+        return
+    } else {
+        currentTimeGlobal = 0;
+        audio.pause()
+        isPlay = false;
+    }
 }
 

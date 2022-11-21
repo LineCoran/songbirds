@@ -1,6 +1,10 @@
 import birdsData from "../data/birdsData";
 import birdsDataEn from "../data/birdsDataEn";
 
+let audio2;
+let isPlay;
+let currentTimeGlobal;
+
 export default function initPlayer2(birdName, step, lang) {
     const birdsDataAll = {
         en: birdsDataEn,
@@ -15,9 +19,9 @@ export default function initPlayer2(birdName, step, lang) {
     const nextButton = document.querySelector('.next__question');
     let globalBirdName = birdName;
     let audioLink = findAudioSourceByName(globalBirdName);
-    let currentTimeGlobal = 0;
-    let audio2 = new Audio();
-    let isPlay = false;
+    currentTimeGlobal = 0;
+    audio2 = new Audio();
+    isPlay = false;
 
     audio2.src = audioLink;
     audio2.currentTime = 0;
@@ -133,5 +137,15 @@ export default function initPlayer2(birdName, step, lang) {
     nextButton.addEventListener('click', stopAudioNextQuestion);
     audioPlayButton.addEventListener('click', playAudio);
     setValue();
+}
+
+export function stopAudio2() {
+    if (!isPlay) {
+        return
+    } else {
+        currentTimeGlobal = 0;
+        audio2.pause()
+        isPlay = false;
+    }
 }
 
