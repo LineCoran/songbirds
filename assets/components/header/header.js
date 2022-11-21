@@ -2,7 +2,7 @@ export default function createHeaderBlock(language) {
     const headerNavText = [
         {
             en: "Main",
-            ru: "На главную",
+            ru: "Главная",
             id: "main-button",
         },
 

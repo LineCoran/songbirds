@@ -27,6 +27,7 @@ body {
     font-size: 16px;
     color: var(--text);
     background-color: var(--background);
+    overflow-x: hidden;
 }
 
   .container {
@@ -61,7 +62,7 @@ body {
 
 .header__nav__item {
   margin-right: 35px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   cursor: pointer;
   transition: 0.5s linear;
@@ -266,3 +267,7 @@ body {
 .language__button-en {
   margin-right: 20px;
 }
+
+
+
+/* adaptive main page */

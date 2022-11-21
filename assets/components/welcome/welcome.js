@@ -15,6 +15,7 @@ export default function createWelcomeBlock(language) {
     for (let i = 0; i < countLayer; i++) {
         const layer = document.createElement('div');
         layer.className = 'layer';
+        layer.id = "layer-main";
         stage.append(layer)
     }
 
