@@ -7,6 +7,8 @@ import seaBird from '../svg/bird-seabird.svg';
 import correctAnswerIndicator from '../svg/green-circle-icon.svg';
 import incorrectAnswerIndicator from '../svg/red-circle-icon.svg';
 import audioPlayIcon from '../svg/play-button-svgrepo-com.svg';
+import audioPauseIcon from '../svg/music-player-pause-button-svgrepo-com.svg';
+
 
 const Svg = 
     [
@@ -24,7 +26,7 @@ const Svg =
         },
         {
             "play": audioPlayIcon,
-          // todo  "pause": pause,
+            "pause": audioPauseIcon,
         }
 
     ]

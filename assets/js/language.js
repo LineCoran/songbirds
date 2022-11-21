@@ -1,5 +1,9 @@
 export default function setLanguage() {
 
-    localStorage.setItem('lang', 'ru');
-
+    if(localStorage.getItem('lang')) {
+        return;
+    } else {
+        localStorage.setItem('lang', 'ru');
+    }
+   
 }

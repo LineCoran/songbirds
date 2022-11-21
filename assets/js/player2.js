@@ -1,5 +1,6 @@
 import birdsData from "../data/birdsData";
 import birdsDataEn from "../data/birdsDataEn";
+import Svg from "./svg";
 
 let audio2;
 let isPlay;
@@ -38,10 +39,14 @@ export default function initPlayer2(birdName, step, lang) {
             audio2.play()
             isPlay = true;
             setExactTime()
+            setExactTime();
+            audioPlayButton.style.background = `url("${Svg[2].pause}") center center / cover no-repeat`;
         } else {
             currentTimeGlobal = audio2.currentTime;
             audio2.pause()
             isPlay = false;
+            setExactTime();
+            audioPlayButton.style.background = `url("${Svg[2].play}") center center / cover no-repeat`;
         }
     }
 

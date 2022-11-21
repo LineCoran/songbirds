@@ -1,9 +1,9 @@
-export default function createResultsBlock(score) {
+export default function createResultsBlock(score, lang) {
 
     let isWon = (Number(score) === 30)?"max":"low"; 
     let playAgain = (Number(score) === 30)?true:false;
 
-    const language = 'en';
+    const language = lang;
     const resultsTextLanguage = {
                             title: {
                                     max: {

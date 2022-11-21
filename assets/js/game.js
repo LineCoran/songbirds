@@ -262,8 +262,11 @@ export default function init() {
         while(mainInner.firstChild) {
             mainInner.firstChild.remove()
         }
-        mainInner.append(createResultsBlock(globalScore));
-        playAgain()
+        mainInner.append(createResultsBlock(globalScore, language));
+        if (globalScore != 30) {
+            playAgain()
+        }
+        
     }
 
     function playAgain() {
@@ -285,7 +288,5 @@ export default function init() {
     }
 
     startGame()
-
-    document.querySelector('.player-icon-1').style.background = `url("${Svg[2].play}") center center / cover no-repeat`;
 }
 

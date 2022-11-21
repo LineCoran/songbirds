@@ -2,6 +2,7 @@
 let audio;
 let isPlay;
 let currentTimeGlobal;
+import Svg from "./svg";
 
 export default function initPlayer(audioSource, correctBird) {
     const audioPlayButton = document.getElementById('play-1');
@@ -34,13 +35,17 @@ export default function initPlayer(audioSource, correctBird) {
             audio.currentTime = audioTime;
             audio.play()
             isPlay = true;
-            setExactTime()
+            setExactTime();
+            audioPlayButton.style.background = `url("${Svg[2].pause}") center center / cover no-repeat`;
         } else {
             audioTime = audio.currentTime;
             audio.pause()
             isPlay = false;
+            audioPlayButton.style.background = `url("${Svg[2].play}") center center / cover no-repeat`;
         }
     }
+
+
 
     function convertTime(duration) {
         let minutes, seconds, minutesString, secondsString;
